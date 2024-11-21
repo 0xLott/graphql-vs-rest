@@ -3,8 +3,8 @@ import time
 import csv
 import argparse
 
-parser = argparse.ArgumentParser(description='Benchmark REST vs GraphQL performance.')
-parser.add_argument('--mode', choices=['java', 'javascript'], required=True, help="Mode to determine the URL base")
+parser = argparse.ArgumentParser(description='Benchmark REST vs GraphQL performance')
+parser.add_argument('--mode', choices=['java', 'javascript'], required=True, help="Language mode")
 args = parser.parse_args()
 
 if args.mode == 'java':
