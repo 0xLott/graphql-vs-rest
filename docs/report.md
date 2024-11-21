@@ -9,7 +9,7 @@ Neste trabalho, realizou-se um experimento controlado com o objetivo de comparar
 
 ## 2. Design do experimento
 
-O experimento foi elaborado visando assegurar a validade dos resultados e responder às questões de pesquisa propostas. Para isso, foram definidos hipóteses claras, variáveis dependentes e independentes, além de tratamentos que representam as condições a serem comparadas (GraphQL e REST).
+O experimento foi elaborado visando assegurar a validade dos resultados e responder às questões de pesquisa propostas. Para isso, foram definidos hipóteses, variáveis dependentes e independentes, além de tratamentos que representam as combinações de condições a serem comparadas.
 
 #### 1. Hipóteses Nula e Alternativa
 
@@ -21,14 +21,14 @@ O experimento foi elaborado visando assegurar a validade dos resultados e respon
 #### 2. Variáveis Dependentes
 
 - **RQ 01**: Tempo de resposta (em ms)
-- **RQ 02**: Tamanho do `response body` (em bytes)
+- **RQ 02**: Tamanho do `response body` (em número de caracteres)
 
 #### 3. Variáveis Independentes
 
-| Fator                        | Níveis                |
-| ---------------------------- | --------------------- |
-| Tipo de implementação de API | `GraphQL` e `REST`    |
-| Linguagem                    | `JavaScript` e `Java` |
+| Fator                        | Níveis               |
+| ---------------------------- | -------------------- |
+| Tipo de implementação de API | `GraphQL`, `REST`    |
+| Linguagem                    | `JavaScript`, `Java` |
 
 #### 4. Tratamentos
 
@@ -50,6 +50,16 @@ O experimento segue um projeto fatorial, com combinações de tratamento em dese
 
 #### 7. Quantidade de Medições
 
+|                                  | Medições de tempo de resposta | Medições de tamanho da resposta |
+| -------------------------------- | ----------------------------- | ------------------------------- |
+| Consultas GraphQL com JavaScript | 400                           | 400                             |
+| Consultas REST com JavaScript    | 400                           | 400                             |
+| Consultas GraphQL com Java       | 400                           | 400                             |
+| Consultas REST com Java          | 400                           | 400                             |
+| **Total**                        | **1600**                      | **1600**                        |
+
+Os resultados das medições estão disponíveis no diretório [code/client/results](../code/python/results).
+
 #### 8. Ameaças à Validade
 
 - _Validade interna_: pode ser comprometida por variações ambientais, como de rede ou de hardware. Para mitigar esses efeitos, os testes foram executados múltiplas vezes em um ambiente controlado.
@@ -60,19 +70,19 @@ O experimento segue um projeto fatorial, com combinações de tratamento em dese
 
 ### 3.1. Criação do Dataset
 
-Como objeto do experimento, utilizou-se um dataset simulado contendo dados, em JSON, de comentários do fórum Language Learning, do Stack Exchange. Os data dumps podem ser obtidos em https://archive.org/download/stackexchange/.
+Como objeto do experimento, utilizou-se um dataset simulado contendo dados, em JSON, de comentários do fórum Language Learning, do Stack Exchange. Os data dumps estão publicamente disponíveis em https://archive.org/download/stackexchange/.
 
-Exemplo de objeto e atributos presentes no conjunto de dados:
+Exemplo de atributos presentes no conjunto de dados:
 
 ```json
 {
-    "id": "6",
-    "postId": "1",
-    "score": "1",
-    "text": "I asked a question similar to this regarding Spanish and French. Non-related languages seem to be easier to differentiate over time, while related languages can cause conflicts that persist.",
-    "creationDate": "2016-04-05T17:35:07.133",
-    "userId": "6"
-},
+  "id": "6",
+  "postId": "1",
+  "score": "1",
+  "text": "I asked a question similar to this regarding Spanish and French. Non-related languages seem to be easier to differentiate over time, while related languages can cause conflicts that persist.",
+  "creationDate": "2016-04-05T17:35:07.133",
+  "userId": "6"
+}
 ```
 
 ### 3.2. Consultas
@@ -80,19 +90,20 @@ Exemplo de objeto e atributos presentes no conjunto de dados:
 Foram executadas as seguintes consultas sobre o dataset, implementadas nas respectivas linguagens de cada tratamento:
 
 - `allComments`: Retorna todos os comentários
-- `commentById`: Retorna um comentário específico por id
-- `commentsByUserId`: Retorna comentários feitos por ID de usuário específico
-- `commentsByMinScore`: Retorna comentários com pelo menos o valor de pontuação especificado entre 0 e 10
+- `commentById`: Retorna um comentário de id específico
+- `commentsByUserId`: Retorna comentários feitos por usuário de id específico
+- `commentsByMinScore`: Retorna comentários com o valor maior or igual a um _score_ especificado entre 0 e 10
 
 ## 5. Resultados
 
-Nesta seção, são apresentados os resultados do experimento para os Tratamentos 3 e 4, correspondentes às implementações das APIs em Java utilizando GraphQL e REST.
+Nesta seção, são apresentados os resultados do experimento para os tratamentos, conforme cada linguagem de implementação.
 
 ### 5.1. Tempos de Resposta (RQ 01)
 
 #### 5.1.1. Java
 
 ![Gráfico com distribuição dos tempos de resposta](../code/python/results/plots/java/average_response_time.png)
+
 _Figura 1: Distribuição dos Tempos de Resposta_
 
 A Figura 1 apresenta a distribuição dos tempos de resposta em milissegundos para diferentes tipos de consulta. Observa-se que:
@@ -101,16 +112,18 @@ A Figura 1 apresenta a distribuição dos tempos de resposta em milissegundos pa
 - Nas demais consultas (`commentById`, `commentsByUserId` e `commentsByMinScore`), os tempos de resposta são mais uniformes, mas REST continua mostrando valores médios e variabilidade menores em relação ao GraphQL.
 
 ![Gráfico com médias dos tempos de resposta](../code/python/results/plots/java/response_time_distribution.png)
+
 _Figura 2: Médias dos Tempos de Resposta_
 
 Os resultados da Figura 2 destacam que:
 
-- O tempo médio de resposta para a consulta allComments em REST é significativamente menor do que em GraphQL, confirmando a superioridade de desempenho neste cenário específico.
+- O tempo médio de resposta para a consulta `allComments` em REST é significativamente menor do que em GraphQL.
 - Para as outras consultas, embora as diferenças sejam menores, REST ainda apresenta tempos ligeiramente melhores.
 
 #### 5.1.2. JavaScript
 
 ![Gráfico com distribuição dos tempos de resposta](../code/python/results/plots/javascript/average_response_time.png)
+
 _Figura 3: Distribuição dos Tempos de Resposta_
 
 A Figura 3 apresenta a distribuição dos tempos de resposta para diferentes tipos de consulta. Os principais destaques incluem:
@@ -120,6 +133,7 @@ A Figura 3 apresenta a distribuição dos tempos de resposta para diferentes tip
 - Na consulta `commentsByMinScore`, o GraphQL apresenta tempos de resposta consistentemente menores, sugerindo uma vantagem significativa para essa query.
 
 ![Gráfico com médias dos tempos de resposta](../code/python/results/plots/javascript/response_time_distribution.png)
+
 _Figura 4: Médias dos Tempos de Resposta_
 
 Os resultados da Figura 4 destacam que:
