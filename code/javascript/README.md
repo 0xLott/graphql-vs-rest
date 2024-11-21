@@ -39,6 +39,7 @@ This project is part of a controlled study to assess the advantages of using Gra
 - `GET /comments`: Returns all comments
 - `GET /comment/:id`: Returns a specific comment by id
 - `GET /comment/user/:id`: Returns comments made by specific user id
+- `GET /comments/min-score/:score`: Returns comments with at least the specified score value between 0 and 10
 
 ## License
 
