@@ -52,11 +52,11 @@ O experimento segue um projeto fatorial, com combinações de tratamento em dese
 
 |                                  | Medições de tempo de resposta | Medições de tamanho da resposta |
 | -------------------------------- | ----------------------------- | ------------------------------- |
-| Consultas GraphQL com JavaScript | 400                           | 400                             |
-| Consultas REST com JavaScript    | 400                           | 400                             |
-| Consultas GraphQL com Java       | 400                           | 400                             |
-| Consultas REST com Java          | 400                           | 400                             |
-| **Total**                        | **1600**                      | **1600**                        |
+| Consultas GraphQL com JavaScript | 400                           | 60                              |
+| Consultas REST com JavaScript    | 400                           | 60                              |
+| Consultas GraphQL com Java       | 400                           | 60                              |
+| Consultas REST com Java          | 400                           | 60                              |
+| **Total**                        | **1600**                      | **240**                         |
 
 Os resultados das medições estão disponíveis no diretório [code/client/results](../code/python/results).
 
