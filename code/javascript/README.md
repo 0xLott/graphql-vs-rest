@@ -50,7 +50,7 @@ This project is part of a controlled study to assess the advantages of using Gra
     npm run gql
    ```
 
-4. Navigate to `http://localhost:3001` to access the API.
+4. Navigate to `http://localhost:3000` to access the API.
 
 ## License
 
