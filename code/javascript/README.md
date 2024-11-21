@@ -1,6 +1,9 @@
 # JavaScript Stack Exchange Comments API
 
-This project is a JavaScript API built using Node.js and Express.js to fetch comments data from the Stack Exchange Language Learning forum.
+This project contains two JavaScript-based APIs to fetch comments data from the Stack Exchange Language Learning forum.
+
+- **REST API**: built using Node.js and Express
+- **GraphQL API**: built using Apollo Server
 
 > [!WARNING]  
 > This API provides static data captured at a specific time for experimental purposes. It is not up-to-date and should not be used for real-time needs.
@@ -33,11 +36,18 @@ This project is part of a controlled study to assess the advantages of using Gra
    npm install
    ```
 
-3. Build the project and start the server:
+3. Build the project and start the **REST API** Express server:
 
    ```bash
     # On /code/javascript directory
-    npm start
+    npm run rest
+   ```
+
+   Or start the **GraphQL API** Apollo server
+
+   ```bash
+    # On /code/javascript directory
+    npm run gql
    ```
 
 4. Navigate to `http://localhost:3001` to access the API.
