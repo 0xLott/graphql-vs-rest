@@ -1,0 +1,15 @@
+type Query {
+    commentById(id: ID!): Comment,
+    commentsByUserId(id: ID!): [Comment]
+    commentsByMinScore(score: Int!): [Comment]
+    allComments: [Comment]
+}
+
+type Comment {
+    id: ID
+    postId: ID
+    score: Int
+    text: String
+    creationDate: String
+    userId: ID
+}

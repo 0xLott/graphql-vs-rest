@@ -32,7 +32,7 @@ app.get("/comments", async (req, res) => {
 /**
  * Get comment by id
  */
-app.get("/comment/:id", async (req, res) => {
+app.get("/comments/:id", async (req, res) => {
   const commentId = req.params.id;
 
   try {
@@ -53,7 +53,7 @@ app.get("/comment/:id", async (req, res) => {
 /**
  * Get comments by user id
  */
-app.get("/comment/user/:id", async (req, res) => {
+app.get("/comments/user/:id", async (req, res) => {
   const userId = req.params.id;
 
   try {
@@ -95,5 +95,5 @@ app.get("/comments/min-score/:score", async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Running on localhost:${port}`);
+  console.log(`REST server is running on localhost:${port}`);
 });

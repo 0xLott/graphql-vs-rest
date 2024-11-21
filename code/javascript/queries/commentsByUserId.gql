@@ -1,10 +1,10 @@
 query {
-  commentsByUserId(userId: 13) {
-    Id
-    PostId
-    Score
-    Text
-    CreationDate
-    UserId
+  commentsByUserId(userId: $userId) {
+    id
+    postId
+    score
+    text
+    creationDate
+    userId
   }
 }

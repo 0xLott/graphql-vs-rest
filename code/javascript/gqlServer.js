@@ -15,16 +15,16 @@ async function loadData() {
 // GraphQL schema
 const typeDefs = gql`
   type Comment {
-    Id: ID
-    PostId: Int
-    Score: Float
-    Text: String
-    CreationDate: String
-    UserId: Int
+    id: ID
+    postId: Int
+    score: Float
+    text: String
+    creationDate: String
+    userId: Int
   }
 
   type Query {
-    comments: [Comment]
+    allComments: [Comment]
     commentById(id: ID!): Comment
     commentsByUserId(userId: Int!): [Comment]
     commentsByMinScore(minScore: Float!): [Comment]
@@ -33,23 +33,23 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    comments: async () => {
+    allComments: async () => {
       return await loadData();
     },
     commentById: async (_, { id }) => {
       const data = await loadData();
-      return data.find((comment) => comment.Id == id) || null;
+      return data.find((comment) => comment.id == id) || null;
     },
     commentsByUserId: async (_, { userId }) => {
       const data = await loadData();
-      return data.filter((comment) => comment.UserId == userId);
+      return data.filter((comment) => comment.userId == userId);
     },
     commentsByMinScore: async (_, { minScore }) => {
       if (minScore < 0 || minScore > 10) {
         throw new Error("Score values should be between 0 and 10.");
       }
       const data = await loadData();
-      return data.filter((comment) => comment.Score >= minScore);
+      return data.filter((comment) => comment.score >= minScore);
     },
   },
 };
@@ -59,6 +59,6 @@ const server = new ApolloServer({
   resolvers,
 });
 
-server.listen({ port: 3000 }).then(({ url }) => {
-  console.log(`Server is running at ${url}`);
+server.listen({ port: 3001 }).then(({ url }) => {
+  console.log(`GraphQL Server is running at ${url}`);
 });

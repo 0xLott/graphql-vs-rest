@@ -1,9 +1,9 @@
 # JavaScript Stack Exchange Comments API
 
-This project contains two JavaScript-based APIs to fetch comments data from the Stack Exchange Language Learning forum.
+This project contains two Java Spring Boot APIs to fetch comments data from the Stack Exchange Language Learning forum.
 
-- **REST API**: built using Node.js and Express
-- **GraphQL API**: built using Apollo Server
+- **REST API**: built using Spring Web
+- **GraphQL API**: built using Spring for GraphQL and Netflix DGS Library
 
 > [!WARNING]  
 > This API provides static data captured at a specific time for experimental purposes. It is not up-to-date and should not be used for real-time needs.
@@ -19,7 +19,8 @@ This project is part of a controlled study to assess the advantages of using Gra
 
 ## Pre-requisites
 
-- Install the latest version of [Node.js](https://nodejs.org/en/).
+- Install the latest version of Java
+- Install the latest version of Maven
 
 ## Instructions
 
@@ -32,27 +33,20 @@ This project is part of a controlled study to assess the advantages of using Gra
 2. Install dependencies:
 
    ```bash
-   cd graphql-vs-rest/code/javascript
-   npm install
+   cd graphql-vs-rest/code/java/spring-graphql-rest-experiment
+   mvn clean package
    ```
 
 3. Build the project and start the **REST API** Express server:
 
    ```bash
-    # On /code/javascript directory
-    npm run rest
+    # On /code/java/spring-graphql-rest-experiment/target directory
+    java -jar spring-graphql-rest-experiment-0.0.1-SNAPSHOT.jar
    ```
 
-   Or start the **GraphQL API** Apollo server
+4. Send HTTP requests under the URI `http://localhost:8080/rest` to access the REST API.
 
-   ```bash
-    # On /code/javascript directory
-    npm run gql
-   ```
-
-4. Send requests to `http://localhost:3000/comments` to access the REST API.
-
-5. Send requests to `http://localhost:3001/` to access the GraphQL API.
+5. Send GraphQL requests under the URI `http://localhost:8080/graphql` to access the GraphQL API.
 
 ## License
 
