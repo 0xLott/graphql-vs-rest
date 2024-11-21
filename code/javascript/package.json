@@ -8,7 +8,7 @@
   "version": "1.0.0",
   "description": "A controlled study to assess the advantages of using GraphQL for web APIs versus REST in terms of performance.",
   "scripts": {
-    "start": "nodemon ./api/rest.js"
+    "start": "nodemon ./api.js"
   },
   "repository": {
     "type": "git",

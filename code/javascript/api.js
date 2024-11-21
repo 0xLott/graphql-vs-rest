@@ -1,4 +1,4 @@
-const readJsonFile = require("../jsonLoader");
+const readJsonFile = require("./jsonLoader");
 const jp = require("jsonpath");
 const express = require("express");
 
