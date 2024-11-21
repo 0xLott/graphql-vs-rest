@@ -1,0 +1,10 @@
+query {
+  commentsByMinScore(minScore: 5) {
+    Id
+    PostId
+    Score
+    Text
+    CreationDate
+    UserId
+  }
+}

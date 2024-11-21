@@ -1,0 +1,10 @@
+query {
+  comments {
+    Id
+    PostId
+    Score
+    Text
+    CreationDate
+    UserId
+  }
+}

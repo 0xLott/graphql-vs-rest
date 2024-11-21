@@ -1,0 +1,10 @@
+query {
+  commentsByUserId(userId: 13) {
+    Id
+    PostId
+    Score
+    Text
+    CreationDate
+    UserId
+  }
+}
