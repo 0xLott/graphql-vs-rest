@@ -60,6 +60,73 @@ O experimento segue um projeto fatorial, com combinações de tratamento em dese
 
 ### 3.1. Criação do Dataset
 
-### 3.2. Definição de Métricas
+Como objeto do experimento, utilizou-se um dataset simulado contendo dados, em JSON, de comentários do fórum Language Learning, do Stack Exchange. Os data dumps podem ser obtidos em https://archive.org/download/stackexchange/.
 
-## 4. Resultados e Análise
+Exemplo de objeto e atributos presentes no conjunto de dados:
+
+```json
+{
+    "id": "6",
+    "postId": "1",
+    "score": "1",
+    "text": "I asked a question similar to this regarding Spanish and French. Non-related languages seem to be easier to differentiate over time, while related languages can cause conflicts that persist.",
+    "creationDate": "2016-04-05T17:35:07.133",
+    "userId": "6"
+},
+```
+
+### 3.2. Consultas
+
+Foram executadas as seguintes consultas sobre o dataset, implementadas nas respectivas linguagens de cada tratamento:
+
+- `allComments`: Retorna todos os comentários
+- `commentById`: Retorna um comentário específico por id
+- `commentsByUserId`: Retorna comentários feitos por ID de usuário específico
+- `commentsByMinScore`: Retorna comentários com pelo menos o valor de pontuação especificado entre 0 e 10
+
+## 5. Resultados
+
+Nesta seção, são apresentados os resultados do experimento para os Tratamentos 3 e 4, correspondentes às implementações das APIs em Java utilizando GraphQL e REST.
+
+### 5.1. Tempos de Resposta (RQ 01)
+
+#### 5.1.1. Java
+
+![Gráfico com distribuição dos tempos de resposta](../code/python/results/plots/java/average_response_time.png)
+_Figura 1: Distribuição dos Tempos de Resposta_
+
+A Figura 1 apresenta a distribuição dos tempos de resposta em milissegundos para diferentes tipos de consulta. Observa-se que:
+
+- Para a consulta `allComments`, o tempo de resposta em GraphQL apresenta outliers, enquanto a REST apresenta uma distribuição mais concentrada com valores médios inferiores.
+- Nas demais consultas (`commentById`, `commentsByUserId` e `commentsByMinScore`), os tempos de resposta são mais uniformes, mas REST continua mostrando valores médios e variabilidade menores em relação ao GraphQL.
+
+![Gráfico com médias dos tempos de resposta](../code/python/results/plots/java/response_time_distribution.png)
+_Figura 2: Médias dos Tempos de Resposta_
+
+Os resultados da Figura 2 destacam que:
+
+- O tempo médio de resposta para a consulta allComments em REST é significativamente menor do que em GraphQL, confirmando a superioridade de desempenho neste cenário específico.
+- Para as outras consultas, embora as diferenças sejam menores, REST ainda apresenta tempos ligeiramente melhores.
+
+#### 5.1.2. JavaScript
+
+![Gráfico com distribuição dos tempos de resposta](../code/python/results/plots/javascript/average_response_time.png)
+_Figura 3: Distribuição dos Tempos de Resposta_
+
+A Figura 3 apresenta a distribuição dos tempos de resposta para diferentes tipos de consulta. Os principais destaques incluem:
+
+- Para a query `allComments`, o GraphQL apresenta menor variabilidade e valores médios inferiores quando comparado ao REST, sugerindo um desempenho superior para este caso.
+- As consultas `commentById` e `commentsByUserId` mostram desempenho melhor em REST, com tempos médios menores e menor dispersão dos dados.
+- Na consulta `commentsByMinScore`, o GraphQL apresenta tempos de resposta consistentemente menores, sugerindo uma vantagem significativa para essa query.
+
+![Gráfico com médias dos tempos de resposta](../code/python/results/plots/javascript/response_time_distribution.png)
+_Figura 4: Médias dos Tempos de Resposta_
+
+Os resultados da Figura 4 destacam que:
+
+- Em `allComments`, o tempo médio de GraphQL é inferior ao de REST, um padrão oposto ao observado nas implementações em Java.
+- Mais uma vez, `commentsByMinScore` apresenta-se mais eficiente quando em GraphQL.
+
+#### 5.2. Comparação Geral
+
+Esses resultados sugerem que o desempenho de APIs WEB em GraphQL e REST não depende apenas do tipo de consulta, mas também da linguagem de implementação. Enquanto REST se mostra mais eficiente em Java, GraphQL pode oferecer vantagens em JavaScript, sobretudo em consultas que demandam maior flexibilidade ou customização de parâmetros retornados.
