@@ -39,7 +39,7 @@ app.get("/comments/:id", async (req, res) => {
     const data = await loadData();
 
     // JSONPath query
-    const comment = jp.query(data, `$[?(@.Id == ${commentId})]`);
+    const comment = jp.query(data, `$[?(@.id == ${commentId})]`);
 
     if (comment.length === 0) {
       return res.status(404).json({ error: `Comment with id ${commentId} was not found.` });
@@ -60,7 +60,7 @@ app.get("/comments/user/:id", async (req, res) => {
     const data = await loadData();
 
     // JSONPath query
-    const comment = jp.query(data, `$[?(@.UserId == ${userId})]`);
+    const comment = jp.query(data, `$[?(@.userId == ${userId})]`);
 
     if (comment.length === 0) {
       return res.status(404).json({ error: `No comments made by ${userId} were found.` });
@@ -83,7 +83,7 @@ app.get("/comments/min-score/:score", async (req, res) => {
     const data = await loadData();
 
     // JSONPath query
-    const comments = jp.query(data, `$[?(@.Score >= ${minScore})]`);
+    const comments = jp.query(data, `$[?(@.score >= ${minScore})]`);
 
     if (comments.length === 0) {
       return res.status(404).json({ error: `No comments with score >= ${minScore} were found.` });

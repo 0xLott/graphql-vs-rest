@@ -57,6 +57,7 @@ def plot_comparative_performance():
     plt.savefig(f"{output_dir}/response_time_distribution.png")
     plt.show()
 
+
 def plot_comparative_size():
     rest_results, graphql_results = load_size_results()
 
@@ -87,6 +88,38 @@ def plot_comparative_size():
     plt.show()
 
 
+def plot_total_response_size():
+    # Load REST and GraphQL size data
+    rest_results = pd.read_csv(f"results/{args.mode}/response_size/rest_results.csv")
+    graphql_results = pd.read_csv(f"results/{args.mode}/response_size/graphql_results.csv")
+
+    # Combine data into a single DataFrame
+    combined_results = pd.DataFrame({
+        'Protocol': ['REST', 'GraphQL'],
+        'Total Response Size (chars)': [
+            rest_results['total_response_size'].sum(),
+            graphql_results['total_response_size'].sum()
+        ]
+    })
+
+    # Plot the data
+    sns.set(style="whitegrid")
+    output_dir = f"results/plots/{args.mode}"
+    os.makedirs(output_dir, exist_ok=True)
+
+    plt.figure(figsize=(8, 6))
+    sns.barplot(x='Protocol', y='Total Response Size (chars)', data=combined_results, palette='viridis')
+
+    plt.title(f'Total Response Size Comparison - {args.mode.capitalize()}')
+    plt.xlabel('Protocol')
+    plt.ylabel('Total Response Size (characters)')
+    plt.tight_layout()
+
+    # Save the plot
+    plt.savefig(f"{output_dir}/total_response_size_comparison.png")
+    plt.show()
+
+
 if __name__ == "__main__":
     plot_comparative_performance()
-    plot_comparative_size()
+    plot_total_response_size()

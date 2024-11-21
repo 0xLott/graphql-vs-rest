@@ -145,13 +145,13 @@ Os resultados da Figura 4 destacam que:
 
 #### 5.2.1. Java
 
-![Gráfico com distribuição dos tempos de resposta](../code/client/results/plots/java/response_size_comparison.png)
+![Gráfico com distribuição dos tempos de resposta](../code/client/results/plots/java/size_comparison_java.jpeg)
 
 _Figura 5: Distribuição dos tempos de resposta_
 
 #### 5.2.2. JavaScript
 
-![Gráfico com distribuição dos tempos de resposta](../code/client/results/plots/javascript/response_size_comparison.png)
+![Gráfico com distribuição dos tempos de resposta](../code/client/results/plots/javascript/size_comparison_plot_javascript.jpeg)
 
 _Figura 6: Distribuição dos tempos de resposta_
 
