@@ -10,13 +10,16 @@ filePath = "data/comments.json";
 async function loadData() {
   try {
     const data = await readJsonFile(filePath);
-    const result = Object.assign({}, data.comments.row);
+    const result = Object.assign({}, data.comments.row); // Converts "row" array to Object
     return result;
   } catch (err) {
     throw err;
   }
 }
 
+/**
+ * Get all comments
+ */
 app.get("/comments", async (req, res) => {
   try {
     const comments = await loadData();
@@ -26,6 +29,9 @@ app.get("/comments", async (req, res) => {
   }
 });
 
+/**
+ * Get comment by id
+ */
 app.get("/comment/:id", async (req, res) => {
   const commentId = req.params.id;
 
@@ -44,6 +50,9 @@ app.get("/comment/:id", async (req, res) => {
   }
 });
 
+/**
+ * Get comments by user id
+ */
 app.get("/comment/user/:id", async (req, res) => {
   const userId = req.params.id;
 
@@ -62,6 +71,9 @@ app.get("/comment/user/:id", async (req, res) => {
   }
 });
 
+/**
+ * Get comments by minimum score
+ */
 app.get("/comments/min-score/:score", async (req, res) => {
   const minScore = req.params.score;
 
