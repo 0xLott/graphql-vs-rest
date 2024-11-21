@@ -58,7 +58,7 @@ O experimento segue um projeto fatorial, com combinações de tratamento em dese
 | Consultas REST com Java          | 400                           | 60                              |
 | **Total**                        | **1600**                      | **240**                         |
 
-Os resultados das medições estão disponíveis no diretório [code/client/results](../code/python/results).
+Os resultados das medições estão disponíveis no diretório [code/client/results](../code/client/results).
 
 #### 8. Ameaças à Validade
 
@@ -102,7 +102,7 @@ Nesta seção, são apresentados os resultados do experimento para os tratamento
 
 #### 5.1.1. Java
 
-![Gráfico com distribuição dos tempos de resposta](../code/python/results/plots/java/average_response_time.png)
+![Gráfico com distribuição dos tempos de resposta](../code/client/results/plots/java/average_response_time.png)
 
 _Figura 1: Distribuição dos Tempos de Resposta_
 
@@ -111,7 +111,7 @@ A Figura 1 apresenta a distribuição dos tempos de resposta em milissegundos pa
 - Para a consulta `allComments`, o tempo de resposta em GraphQL apresenta outliers, enquanto a REST apresenta uma distribuição mais concentrada com valores médios inferiores.
 - Nas demais consultas (`commentById`, `commentsByUserId` e `commentsByMinScore`), os tempos de resposta são mais uniformes, mas REST continua mostrando valores médios e variabilidade menores em relação ao GraphQL.
 
-![Gráfico com médias dos tempos de resposta](../code/python/results/plots/java/response_time_distribution.png)
+![Gráfico com médias dos tempos de resposta](../code/client/results/plots/java/response_time_distribution.png)
 
 _Figura 2: Médias dos Tempos de Resposta_
 
@@ -122,7 +122,7 @@ Os resultados da Figura 2 destacam que:
 
 #### 5.1.2. JavaScript
 
-![Gráfico com distribuição dos tempos de resposta](../code/python/results/plots/javascript/average_response_time.png)
+![Gráfico com distribuição dos tempos de resposta](../code/client/results/plots/javascript/average_response_time.png)
 
 _Figura 3: Distribuição dos Tempos de Resposta_
 
@@ -132,7 +132,7 @@ A Figura 3 apresenta a distribuição dos tempos de resposta para diferentes tip
 - As consultas `commentById` e `commentsByUserId` mostram desempenho melhor em REST, com tempos médios menores e menor dispersão dos dados.
 - Na consulta `commentsByMinScore`, o GraphQL apresenta tempos de resposta consistentemente menores, sugerindo uma vantagem significativa para essa query.
 
-![Gráfico com médias dos tempos de resposta](../code/python/results/plots/javascript/response_time_distribution.png)
+![Gráfico com médias dos tempos de resposta](../code/client/results/plots/javascript/response_time_distribution.png)
 
 _Figura 4: Médias dos Tempos de Resposta_
 
@@ -141,6 +141,20 @@ Os resultados da Figura 4 destacam que:
 - Em `allComments`, o tempo médio de GraphQL é inferior ao de REST, um padrão oposto ao observado nas implementações em Java.
 - Mais uma vez, `commentsByMinScore` apresenta-se mais eficiente quando em GraphQL.
 
-#### 5.2. Comparação Geral
+### 5.2. Tamanhos de Resposta (RQ 01)
 
-Esses resultados sugerem que o desempenho de APIs WEB em GraphQL e REST não depende apenas do tipo de consulta, mas também da linguagem de implementação. Enquanto REST se mostra mais eficiente em Java, GraphQL pode oferecer vantagens em JavaScript, sobretudo em consultas que demandam maior flexibilidade ou customização de parâmetros retornados.
+#### 5.2.1. Java
+
+![Gráfico com distribuição dos tempos de resposta](../code/client/results/plots/java/response_size_comparison.png)
+
+_Figura 5: Distribuição dos tempos de resposta_
+
+#### 5.2.2. JavaScript
+
+![Gráfico com distribuição dos tempos de resposta](../code/client/results/plots/javascript/response_size_comparison.png)
+
+_Figura 6: Distribuição dos tempos de resposta_
+
+### 5.3. Comparação Geral
+
+Esses resultados sugerem que o desempenho de APIs WEB em GraphQL e REST não depende apenas do tipo de consulta, mas também da linguagem de implementação. Enquanto REST se mostra mais eficiente em Java, GraphQL pode oferecer vantagens em JavaScript, sobretudo em consultas que demandam maior flexibilidade ou customização de parâmetros retornados. Ademais, quanto ao tamanho das respostas, é evidente que GraphQL apresenta _response bodies_ mais extensos para Java, enquanto que, para JavaScript, os resultados são mistos.
