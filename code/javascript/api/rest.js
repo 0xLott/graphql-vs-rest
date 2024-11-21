@@ -29,18 +29,33 @@ app.get("/comments", async (req, res) => {
 app.get("/comment/:id", async (req, res) => {
   const commentId = req.params.id;
 
-  if (!commentId || isNaN(commentId)) {
-    return res.status(400).json({ error: "Invalid comment ID provided." });
-  }
-
   try {
     const data = await loadData();
 
     // JSONPath query
     const comment = jp.query(data, `$[?(@.Id == ${commentId})]`);
 
-    if (!comment || comment.length === 0) {
-      return res.status(404).json({ error: `Comment with id ${commentId} not found.` });
+    if (comment.length === 0) {
+      return res.status(404).json({ error: `Comment with id ${commentId} was not found.` });
+    }
+    return res.status(200).json({ success: true, data: comment });
+  } catch (error) {
+    console.error("Error handling request:", error);
+    return res.status(500).json({ error: "Couldn't load comments." });
+  }
+});
+
+app.get("/comment/user/:id", async (req, res) => {
+  const UserId = req.params.id;
+
+  try {
+    const data = await loadData();
+
+    // JSONPath query
+    const comment = jp.query(data, `$[?(@.UserId == ${UserId})]`);
+
+    if (comment.length === 0) {
+      return res.status(404).json({ error: `No comments made by ${UserId} were found.` });
     }
     return res.status(200).json({ success: true, data: comment });
   } catch (error) {

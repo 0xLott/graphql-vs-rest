@@ -37,7 +37,8 @@ This project is part of a controlled study to assess the advantages of using Gra
 ## Endpoints
 
 - `GET /comments`: Returns all comments
-- `GET /comments/:id`: Returns a specific comment by ID
+- `GET /comment/:id`: Returns a specific comment by id
+- `GET /comment/user/:id`: Returns comments made by specific user id
 
 ## License
 
