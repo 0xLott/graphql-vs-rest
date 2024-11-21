@@ -1,5 +1,22 @@
 {
   "dependencies": {
-    "express": "^4.21.1"
+    "express": "^4.21.1",
+    "nodemon": "^3.1.7"
+  },
+  "name": "graphql-vs-rest",
+  "version": "1.0.0",
+  "description": "A controlled study to assess the advantages of using GraphQL for web APIs versus REST in terms of performance.",
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon ./api/rest.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0xLott/graphql-vs-rest.git"
+  },
+  "author": "0xLott",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/0xLott/graphql-vs-rest/issues"
   }
 }
