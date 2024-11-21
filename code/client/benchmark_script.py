@@ -84,12 +84,12 @@ if __name__ == "__main__":
     # Benchmark REST
     print(f"Benchmarking REST endpoints in {args.mode} mode...")
     rest_results = benchmark_rest()
-    save_to_csv(f"results/{args.mode}/rest_results.csv", rest_results, ["query", "status_code", "response_time_ms"])
+    save_to_csv(f"results/{args.mode}/response_time/rest_results.csv", rest_results, ["query", "status_code", "response_time_ms"])
     print("REST results saved to rest_results.csv")
 
     # Benchmark GraphQL
     print(f"Benchmarking GraphQL queries in {args.mode} mode...")
     graphql_results = benchmark_graphql()
-    save_to_csv(f"results/{args.mode}/graphql_results.csv", graphql_results,
+    save_to_csv(f"results/{args.mode}/response_time/graphql_results.csv", graphql_results,
                 ["query", "status_code", "response_time_ms"])
     print("GraphQL results saved to graphql_results.csv")
