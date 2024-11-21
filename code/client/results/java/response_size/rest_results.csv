@@ -1,4 +1,4 @@
-query,response_size_chars
+query,response_size_chars,system_type
 allComments,4287,REST Java
 allComments,3996,REST Java
 allComments,2627,REST Java

@@ -1,4 +1,4 @@
-query,response_size_chars
+query,response_size_chars,system_type
 allComments,4277,REST JavaScript
 allComments,4106,REST JavaScript
 allComments,3867,REST JavaScript
